@@ -38,6 +38,7 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
+        //imagename untuk menyimpan imagenya 
         $imageName = time().'.'.$request->gambar_artikel->extension();  
         $request->file('gambar_artikel')->move(public_path('images'), $imageName);
         $data = Artikel::create([
