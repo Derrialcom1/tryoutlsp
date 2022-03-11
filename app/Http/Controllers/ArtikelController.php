@@ -140,6 +140,7 @@ class ArtikelController extends Controller
 
     public function isi()
     {
+        //masing masing var digunakan supaya bisa di ambil 
         $kategori = Kategori::all(); //SELECT * FROM db
         $terbaru = Artikel::orderBy('created_at', 'desc')->paginate(3);
         $favorit = Artikel::orderBy('updated_at', 'desc')->paginate(3);

@@ -18,7 +18,7 @@ class AuthController extends Controller
         );
 
         $cek = Validator::make($request->all(),$rules);
-
+        //jika error maka akan terjadi sebuah aksi 
         if ($cek->fails()) {
             $errorString = implode(",",$cek->messages()->all());
             return redirect()->route('login')->with('warning',$errorString);
