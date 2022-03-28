@@ -92,6 +92,8 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $imageName = time().'.'.$request->gambar_artikel->extension();  
+        $request->file('gambar_artikel')->move(public_path('images'), $imageName);
         $data = Artikel::where('id', $id)->first();
         if ($data) {
             //merubah data yang sudah didapatkan dari database menjadi data yang didapat dari input website
@@ -99,7 +101,7 @@ class ArtikelController extends Controller
             $data->kategori_id = $request->kategori_id;
             $data->judul_artikel = $request->judul_artikel;
             $data->isi_artikel = $request->isi_artikel;
-            $data->gambar_artikel = $request->gambar_artikel;  
+            $data->gambar_artikel = $imageName;  
             //proses menyimpan atau memperbaharui data yang sudah ada di database
             $result = $data->save();
 

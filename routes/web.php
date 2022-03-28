@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     AuthController,
     ArtikelController,
-    KategoriController
+    KategoriController,
+    SiswaController
 };
 /*
 |--------------------------------------------------------------------------
@@ -61,5 +62,18 @@ Route::group(['auth:sanctum'], function () {
         Route::post('/savekategori', [KategoriController::class, "store"])->name('savekategori');
         Route::get('/deletekategori/{id}', [KategoriController::class, "destroy"])->name('deletekategori');
         Route::post('/updatekategori/{id}', [KategoriController::class, "update"])->name('updatekategori');
+
+        Route::get('/siswa', function () {
+            return view('siswa');
+        })->name('siswa');
+        Route::get('/siswa', [SiswaController::class, "index"])->name('siswa');
+        Route::get('/addsiswa', function () {
+            return view('addsiswa');
+        })->name('addsiswa');
+        Route::get('/editsiswa/{id}', [SiswaController::class, "show"])->name('editsiswa');
+        Route::post('/savesiswa', [SiswaController::class, "store"])->name('savesiswa');
+        Route::get('/deletesiswa/{id}', [SiswaController::class, "destroy"])->name('deletesiswa');
+        Route::post('/updatesiswa/{id}', [SiswaController::class, "update"])->name('updatesiswa');
+
     });
 });
